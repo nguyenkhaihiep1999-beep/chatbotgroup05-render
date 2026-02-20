@@ -1,0 +1,47 @@
+[
+  {
+    "keywords": ["xin chao","chao"],
+    "answer": "Chào bạn 👋"
+  },
+  {
+    "keywords": ["hú hú", "alo"],
+    "answer": "Tôi đây bạn cần tôi giúp gì nào  👋"
+  },
+  {
+    "keywords": ["thanks you","cam on"],
+    "answer": "Cảm ơn bạn!!!\n Chào bạn và hẹn gặp lại bạn sau nha\nNếu cần hỏi gì về thông tin về HUIT hãy liên hệ cho tôi"
+  },
+  {
+    "keywords":  ["duc thinh", "an gi", " duc thinh an gi", " hom nay"],
+    "answer": "Đức Thịnh ăn sô cô la uống trà đá 👋"
+  },
+  {
+    "keywords":  ["minh thu "],
+    "answer": "Minh Thư là một thành viên của nhóm 05"
+  },
+  {
+    "keywords":  ["thong tin", "ma so sinh vien"],
+    "answer": "Minh Thư có mã số sinh viên là 2045240294\n quê ở bến tre\n yêu màu hồng thích đạp xe đạp dưới mưa."
+  },
+  {
+    "keywords":  ["thay tran dinh toan","dinh toan","thay toan"],
+    "answer": "thay toan la mot nguoi truyen cam hung cho sinh vien truong dai hoc cong thuong\n rat gioi trong bo mon tri tue nhan tao\nthay la nguoi dep trai nhat hanh tinh"
+
+  },
+  {
+    "keywords": ["hoc phi", "hocphi"],
+    "answer": "Học phí hiện tại là 8 triệu mỗi học kỳ."
+  },
+  {
+    "keywords": ["dang ky", "dangky", "dang ky mon"],
+    "answer": "Sinh viên đăng ký môn học trên cổng thông tin sinh viên."
+  },
+  {
+    "keywords": ["thoi gian hoc", "gio hoc"],
+    "answer": "Thời gian học từ thứ 2 đến thứ chủ nhật."
+  },
+  {
+    "keywords": ["dia chi truong","dia chi", "o dau","truong"],
+    "answer": "Trường nằm tại 140 Lê Trọng Tấn\n Phường Sơn Kỳ\nQuận Tân Phú\n Thành Phố Hồ Chí Minh."
+  }
+]
