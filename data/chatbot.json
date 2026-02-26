@@ -1,47 +1,102 @@
-[
-  {
-    "keywords": ["xin chao","chao"],
-    "answer": "Chào bạn 👋"
+{
+  "majors": {
+    "cong nghe thong tin": [
+      "cong nghe thong tin",
+      "cntt",
+      "it",
+      "công nghệ thông tin"
+    ],
+    "quan tri kinh doanh": [
+      "quan tri kinh doanh",
+      "qtkd",
+      "kinh doanh",
+      "quản trị kinh doanh"
+    ],
+    "ke toan": [
+      "ke toan",
+      "kt",
+      "kế toán"
+    ]
   },
-  {
-    "keywords": ["hú hú", "alo"],
-    "answer": "Tôi đây bạn cần tôi giúp gì nào  👋"
-  },
-  {
-    "keywords": ["thanks you","cam on"],
-    "answer": "Cảm ơn bạn!!!\n Chào bạn và hẹn gặp lại bạn sau nha\nNếu cần hỏi gì về thông tin về HUIT hãy liên hệ cho tôi"
-  },
-  {
-    "keywords":  ["duc thinh", "an gi", " duc thinh an gi", " hom nay"],
-    "answer": "Đức Thịnh ăn sô cô la uống trà đá 👋"
-  },
-  {
-    "keywords":  ["minh thu "],
-    "answer": "Minh Thư là một thành viên của nhóm 05"
-  },
-  {
-    "keywords":  ["thong tin", "ma so sinh vien"],
-    "answer": "Minh Thư có mã số sinh viên là 2045240294\n quê ở bến tre\n yêu màu hồng thích đạp xe đạp dưới mưa."
-  },
-  {
-    "keywords":  ["thay tran dinh toan","dinh toan","thay toan"],
-    "answer": "thay toan la mot nguoi truyen cam hung cho sinh vien truong dai hoc cong thuong\n rat gioi trong bo mon tri tue nhan tao\nthay la nguoi dep trai nhat hanh tinh"
 
-  },
-  {
-    "keywords": ["hoc phi", "hocphi"],
-    "answer": "Học phí hiện tại là 8 triệu mỗi học kỳ."
-  },
-  {
-    "keywords": ["dang ky", "dangky", "dang ky mon"],
-    "answer": "Sinh viên đăng ký môn học trên cổng thông tin sinh viên."
-  },
-  {
-    "keywords": ["thoi gian hoc", "gio hoc"],
-    "answer": "Thời gian học từ thứ 2 đến thứ chủ nhật."
-  },
-  {
-    "keywords": ["dia chi truong","dia chi", "o dau","truong"],
-    "answer": "Trường nằm tại 140 Lê Trọng Tấn\n Phường Sơn Kỳ\nQuận Tân Phú\n Thành Phố Hồ Chí Minh."
+  "rules": [
+    {
+      "keywords": ["chào", "xin chào", "hello", "hi", "chào bạn"],
+      "field": "chao_hoi",
+      "requires_major": false
+    },
+    {
+      "keywords": ["hoc phi", "học phí"],
+      "field": "hoc_phi",
+      "requires_major": true
+    },
+    {
+      "keywords": ["diem chuan", "điểm chuẩn"],
+      "field": "diem_chuan",
+      "requires_major": true
+    },
+    {
+      "keywords": ["thoi gian hoc", "thời gian học", "hoc bao lau", "học bao lâu"],
+      "field": "thoi_gian_hoc",
+      "requires_major": true
+    },
+    {
+      "keywords": ["to hop", "tổ hợp", "to hop xet tuyen", "tổ hợp xét tuyển"],
+      "field": "to_hop",
+      "requires_major": true
+    },
+    {
+      "keywords": ["so tin chi", "số tín chỉ", "tin chi"],
+      "field": "so_tin_chi",
+      "requires_major": true
+    },
+    {
+      "keywords": ["thong tin", "thông tin", "gioi thieu", "giới thiệu"],
+      "field": "thong_tin",
+      "requires_major": true
+    },
+    {
+      "keywords": ["co so", "địa chỉ", "ở đâu"],
+      "field": "co_so",
+      "requires_major": false
+    },
+    {
+      "keywords": ["lien he", "liên hệ", "so dien thoai", "email"],
+      "field": "lien_he",
+      "requires_major": false
+    }
+  ],
+
+  "data": {
+    "chao_hoi": "Xin chào . Tôi là chatbot tư vấn tuyển sinh của Trường ABC ",
+    "cong nghe thong tin": {
+      "hoc_phi": "Học phí ngành Công nghệ thông tin khoảng 15.000.000 VNĐ/năm.",
+      "diem_chuan": "Điểm chuẩn ngành Công nghệ thông tin năm 2024 là 24 điểm.",
+      "thoi_gian_hoc": "Thời gian đào tạo ngành Công nghệ thông tin là 4 năm.",
+      "to_hop": "Ngành Công nghệ thông tin xét tuyển các tổ hợp: A00, A01, D01.",
+      "so_tin_chi": "Ngành Công nghệ thông tin yêu cầu hoàn thành 130 tín chỉ.",
+      "thong_tin": "Ngành Công nghệ thông tin đào tạo về lập trình, trí tuệ nhân tạo, khoa học dữ liệu và phát triển phần mềm."
+    },
+
+    "quan tri kinh doanh": {
+      "hoc_phi": "Học phí ngành Quản trị kinh doanh khoảng 14.000.000 VNĐ/năm.",
+      "diem_chuan": "Điểm chuẩn ngành Quản trị kinh doanh năm 2024 là 23 điểm.",
+      "thoi_gian_hoc": "Thời gian đào tạo ngành Quản trị kinh doanh là 4 năm.",
+      "to_hop": "Ngành Quản trị kinh doanh xét tuyển các tổ hợp: A00, A01, D01.",
+      "so_tin_chi": "Ngành Quản trị kinh doanh yêu cầu hoàn thành 128 tín chỉ.",
+      "thong_tin": "Ngành Quản trị kinh doanh đào tạo về quản lý, marketing, tài chính và chiến lược doanh nghiệp."
+    },
+
+    "ke toan": {
+      "hoc_phi": "Học phí ngành Kế toán khoảng 13.000.000 VNĐ/năm.",
+      "diem_chuan": "Điểm chuẩn ngành Kế toán năm 2024 là 22 điểm.",
+      "thoi_gian_hoc": "Thời gian đào tạo ngành Kế toán là 4 năm.",
+      "to_hop": "Ngành Kế toán xét tuyển các tổ hợp: A00, A01, D01.",
+      "so_tin_chi": "Ngành Kế toán yêu cầu hoàn thành 125 tín chỉ.",
+      "thong_tin": "Ngành Kế toán đào tạo chuyên sâu về kế toán tài chính, kiểm toán và quản lý thuế."
+    },
+
+    "co_so": "Trường Đại học ABC tọa lạc tại số 123 đường Nguyễn Văn Linh, TP. Hồ Chí Minh.",
+    "lien_he": "Bạn có thể liên hệ qua số điện thoại 0123 456 789 hoặc email info@abc.edu.vn."
   }
-]
+}

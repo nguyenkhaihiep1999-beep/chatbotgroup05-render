@@ -1,197 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Chatbot Group 05</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Chatbot Group 05 — HUIT</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #e8f1fb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+:root{
+  --blue:#2563eb;
+  --bg:#f1f5f9;
 }
 
-.chat-container {
-    width: 420px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
+html,body{
+  height:100%;
+  margin:0;
+  font-family:Segoe UI,Roboto,Arial;
+  background:var(--bg);
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.chat-header {
-    background: #0d6efd;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 12px 12px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+/* ===== CHAT BOX ===== */
+
+.chat-shell{
+  width:400px;
+  height:640px;
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
 }
 
-.chat-header img {
-    width: 32px;
-    height: 32px;
+/* ===== HEADER ===== */
+
+.chat-header{
+  padding:25px 20px;
+  text-align:center;
+  border-bottom:1px solid #eee;
 }
 
-#chatbox {
-    padding: 15px;
-    height: 300px;
-    overflow-y: auto;
-    background: #f4f8ff;
+.main-logo{
+  width:95px;
+  margin-bottom:12px;
 }
 
-.message {
-    max-width: 75%;
-    padding: 10px 14px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    clear: both;
-    word-wrap: break-word;
+.chat-header h1{
+  margin:0;
+  font-size:26px;   /* CHỦ ĐỀ TO */
+  font-weight:700;
+  color:var(--blue);
 }
 
-.user {
-    background: #0d6efd;
-    color: white;
-    float: right;
-    border-bottom-right-radius: 4px;
+.chat-header p{
+  margin:6px 0 0;
+  font-size:14px;
+  font-weight:600;   /* IN ĐẬM */
+  color:#444;
 }
 
-.bot {
-    background: #e2ebff;
-    color: #000;
-    float: left;
-    border-bottom-left-radius: 4px;
+/* ===== BODY ===== */
+
+.chat-body{
+  flex:1;
+  padding:18px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
-.chat-input {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ddd;
+.msg-row{display:flex}
+.msg-row.bot{justify-content:flex-start}
+.msg-row.user{justify-content:flex-end}
+
+.bubble{
+  max-width:75%;
+  padding:11px 15px;
+  border-radius:20px;
+  font-size:14px;
+  line-height:1.4;
 }
 
-.chat-input input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    outline: none;
+.bot .bubble{
+  background:#e2e8f0;
 }
 
-.chat-input button {
-    margin-left: 8px;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 50%;
-    background: #0d6efd;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
+.user .bubble{
+  background:var(--blue);
+  color:#fff;
 }
 
-.chat-input button:hover {
-    background: #084298;
+/* ===== FOOTER ===== */
+
+.chat-footer{
+  display:flex;
+  padding:12px;
+  gap:8px;
+  align-items:center;
+  border-top:1px solid #eee;
+}
+
+.chat-footer input{
+  flex:1;
+  padding:12px 15px;
+  border-radius:25px;
+  border:1px solid #ddd;
+  outline:none;
+}
+
+/* ===== BUTTON ===== */
+
+.btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:none;
+  background:#e2e8f0;
+  cursor:pointer;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:0.2s;
+}
+
+.btn:hover{
+  background:#d1d5db;
+}
+
+.mic.recording{
+  background:red;
+  color:#fff;
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+
+/* ===== LOADING DOTS ===== */
+
+.typing span{
+  display:inline-block;
+  animation:blink 1.4s infinite both;
+}
+
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+
+@keyframes blink{
+  0%{opacity:.2}
+  20%{opacity:1}
+  100%{opacity:.2}
 }
 </style>
 </head>
 
 <body>
 
-<div class="chat-container">
-    <div class="chat-header">
-        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="robot">
-        Chatbot Group 05
-    </div>
+<div class="chat-shell">
 
-    <div id="chatbox"></div>
+<div class="chat-header">
+  <!-- ROBOT LOGO -->
+  <img class="main-logo" 
+       src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png">
+  <h1>Chatbot Group 05</h1>
+  <p>Tư vấn tuyển sinh — HUIT</p>
+</div>
 
-    <div class="chat-input">
-        <input type="text" id="message" placeholder="Nhập câu hỏi...">
-        <button onclick="send()">➤</button>
-        <button onclick="startVoice()">🎤</button>
-    </div>
+<div class="chat-body" id="chatbox"></div>
+
+<div class="chat-footer">
+  <input id="message" placeholder="Nhập câu hỏi...">
+  
+  <button class="btn mic" id="micBtn">
+    <i class="fa-solid fa-microphone"></i>
+  </button>
+
+  <button class="btn" id="sendBtn">
+    <i class="fa-solid fa-paper-plane"></i>
+  </button>
+</div>
+
 </div>
 
 <script>
-/* ===== LỜI CHÀO BAN ĐẦU ===== */
-window.onload = () => {
-    const box = document.getElementById("chatbox");
-    box.innerHTML += `
-        <div class="message bot">
-            Xin chào bạn 👋<br>
-            Mình là <b>Chatbot Group 05</b> 🤖<br>
-            Mình có thể hỗ trợ thông tin về
-            <b>Trường Đại học Công Thương TP.HCM (HUIT)</b>.<br>
-            Bạn cần hỏi gì không?
-        </div>
-    `;
-};
+const chatbox=document.getElementById("chatbox");
+const micBtn=document.getElementById("micBtn");
 
-/* ===== GỬI TIN NHẮN ===== */
-function send(text = null) {
-    const input = document.getElementById("message");
-    const msg = text ?? input.value.trim();
-    if (!msg) return;
+/* ===== ADD MESSAGE ===== */
 
-    const box = document.getElementById("chatbox");
-
-    // user message
-    box.innerHTML += `<div class="message user">${msg}</div>`;
-    box.scrollTop = box.scrollHeight;
-    input.value = "";
-
-    fetch("/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: msg })
-    })
-    .then(res => res.json())
-    .then(data => {
-        box.innerHTML += `<div class="message bot">${data.reply}</div>`;
-        box.scrollTop = box.scrollHeight;
-    })
-    .catch(() => {
-        box.innerHTML += `<div class="message bot">Lỗi kết nối server.</div>`;
-    });
+function addBot(text){
+  const div=document.createElement("div");
+  div.className="msg-row bot";
+  div.innerHTML=`<div class="bubble">${text}</div>`;
+  chatbox.appendChild(div);
+  chatbox.scrollTop=chatbox.scrollHeight;
 }
 
-/* ===== ENTER ĐỂ GỬI ===== */
-document.getElementById("message").addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-        e.preventDefault();
-        send();
-    }
+function addUser(text){
+  const div=document.createElement("div");
+  div.className="msg-row user";
+  div.innerHTML=`<div class="bubble">${text}</div>`;
+  chatbox.appendChild(div);
+  chatbox.scrollTop=chatbox.scrollHeight;
+}
+
+/* ===== WELCOME ===== */
+window.onload=()=>{
+  addBot("Xin chào 👋 Mình có thể giúp gì cho bạn?");
+}
+
+/* ===== SEND ===== */
+
+async function sendMessage(text){
+  if(!text) return;
+
+  addUser(text);
+  document.getElementById("message").value="";
+
+  addBot(`<div class="typing">Đang tìm kiếm <span>.</span><span>.</span><span>.</span></div>`);
+
+  try{
+    const res=await fetch("/chat",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({message:text})
+    });
+    const data=await res.json();
+    chatbox.lastChild.remove();
+    addBot(data.reply||"Chưa có dữ liệu.");
+  }catch{
+    chatbox.lastChild.remove();
+    addBot("Lỗi kết nối server.");
+  }
+}
+
+document.getElementById("sendBtn").onclick=()=>{
+  sendMessage(document.getElementById("message").value.trim());
+};
+
+document.getElementById("message").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){
+    sendMessage(e.target.value.trim());
+  }
 });
 
-/* ===== VOICE INPUT ===== */
-const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
+/* ===== VOICE ===== */
 
-if (SpeechRecognition) {
-    const recognition = new SpeechRecognition();
-    recognition.lang = "vi-VN";
+if ('webkitSpeechRecognition' in window) {
 
-    function startVoice() {
-        recognition.start();
-    }
+  const recognition=new webkitSpeechRecognition();
+  recognition.lang="vi-VN";
 
-    recognition.onresult = e => {
-        send(e.results[0][0].transcript);
-    };
+  micBtn.onclick=()=>{
+    recognition.start();
+    micBtn.classList.add("recording");
+  };
 
-    window.startVoice = startVoice;
-} else {
-    function startVoice() {
-        alert("Trình duyệt không hỗ trợ giọng nói");
-    }
+  recognition.onresult=(e)=>{
+    const text=e.results[0][0].transcript;
+    micBtn.classList.remove("recording");
+    sendMessage(text);
+  };
+
+  recognition.onend=()=>{
+    micBtn.classList.remove("recording");
+  };
+
+}else{
+  micBtn.onclick=()=>{
+    addBot("Trình duyệt không hỗ trợ voice. Hãy dùng Chrome.");
+  };
 }
 </script>
 

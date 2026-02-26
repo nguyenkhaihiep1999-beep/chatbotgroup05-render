@@ -1,50 +1,108 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, session
 import re
 import unicodedata
 import json
 import os
 
 app = Flask(__name__)
+app.secret_key = "super-secret-key"
 
-# ===== LOAD RULES FROM JSON =====
+# ================= LOAD JSON =================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RULES_PATH = os.path.join(BASE_DIR, "data", "chatbot.json")
 
 with open(RULES_PATH, encoding="utf-8") as f:
-    rules = json.load(f)
+    DATA = json.load(f)
 
-# ===== NLP: TIỀN XỬ LÝ =====
+# ================= NORMALIZE =================
 def normalize_text(text):
     text = text.lower()
     text = unicodedata.normalize("NFD", text)
     text = "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
-    text = re.sub(r"[^\w\s]", "", text)
+    text = re.sub(r"[^\w\s]", " ", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
-# ===== SUY DIỄN IF - THEN =====
-def infer_answer(user_input):
-    results = []
+# ================= DETECT MAJOR =================
+def detect_major(user_input):
+    for major_name, keywords in DATA["majors"].items():
+        for kw in keywords:
+            kw_norm = normalize_text(kw)
+            pattern = r"\b" + re.escape(kw_norm) + r"\b"
 
-    for rule in rules:
-        for kw in rule.get("keywords", []):
-            if kw in user_input:
-                ans = rule.get("answer", "")
-                if isinstance(ans, list):
-                    results.extend(ans)
-                else:
-                    results.append(ans)
-                break
+            if re.search(pattern, user_input):
+                return major_name
+    return None
+# ================= DETECT INTENT =================
+def detect_intent(user_input):
 
-    # Xóa trùng – giữ thứ tự
-    results = list(dict.fromkeys(results))
+    for rule in DATA["rules"]:
+        for kw in rule["keywords"]:
+            kw_norm = normalize_text(kw)
 
-    if results:
-        return "<br>".join(results)
+            # Match theo từ hoàn chỉnh
+            pattern = r"\b" + re.escape(kw_norm) + r"\b"
 
-    return "Xin lỗi, chủ nhân chưa thêm thông tin về vấn đề này cho tôi, bạn có thể hỏi câu hỏi khác tôi sẽ cố gắng giúp bạn."
+            if re.search(pattern, user_input):
+                return rule
 
-# ===== ROUTES =====
+    return None
+# ================= GET RESPONSE =================
+def get_response(intent_field, major=None):
+
+    if major:
+        major_data = DATA["data"].get(major)
+        if major_data:
+            answer = major_data.get(intent_field)
+            if answer:
+                return answer
+
+    answer = DATA["data"].get(intent_field)
+    if answer:
+        return answer
+
+    return None
+
+# ================= INFER =================
+def infer_answer(raw_input):
+
+    user_input = normalize_text(raw_input)
+
+    intent = detect_intent(user_input)
+    major = detect_major(user_input)
+
+    # Nếu user chỉ nhập ngành sau khi bot hỏi
+    if not intent and major and session.get("pending_intent"):
+        intent_field = session.pop("pending_intent")
+        session["current_major"] = major
+        answer = get_response(intent_field, major)
+        return answer if answer else "Hiện chưa có dữ liệu cho ngành này."
+
+    if not intent:
+        return "Xin lỗi, tôi chưa hiểu câu hỏi. Ví dụ: 'học phí CNTT'."
+
+    field = intent["field"]
+
+    # Nếu cần ngành
+    if intent.get("requires_major"):
+
+        if not major:
+            major = session.get("current_major")
+
+        if not major:
+            session["pending_intent"] = field
+            return "Bạn muốn hỏi ngành nào?"
+
+        session["current_major"] = major
+
+        answer = get_response(field, major)
+        return answer if answer else "Hiện chưa có dữ liệu cho ngành này."
+
+    # Không cần ngành
+    answer = get_response(field)
+    return answer if answer else "Xin lỗi, tôi chưa có dữ liệu cho câu hỏi này."
+
+# ================= ROUTES =================
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -52,12 +110,11 @@ def home():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    user_input = normalize_text(data.get("message", ""))
-    reply = infer_answer(user_input)
+    message = data.get("message", "")
+    reply = infer_answer(message)
     return jsonify({"reply": reply})
 
+# ================= RUN =================
 if __name__ == "__main__":
-    import os
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
-
