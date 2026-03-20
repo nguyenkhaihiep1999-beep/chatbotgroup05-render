@@ -16,6 +16,41 @@
       "ke toan",
       "kt",
       "kế toán"
+    ],
+    "cong nghe thuc pham": [
+      "cntp",
+      "thuc pham",
+      "công nhệ thực phẩm"
+    ],
+     "thuong mai dien tu": [
+      "tmdt",
+      "điện tử",
+      "dien tu",
+      "thương mại điện tử"
+    ],
+     "marketing": [
+      "mkt",
+      "ma két ting",
+      "markrttingg"
+    ],
+     "cong nghe ky thua dien tu": [
+      "cnktdt",
+      "dien tu",
+      "ky thuật",
+      "công nghệ điện tử",
+      "công nghệ kỹ thuật điện tử",
+      "sinh học"
+    ],
+     "ngon ngu anh": [
+      "nna",
+      "anh",
+      "ngôn ngữ",
+      "ngôn ngữ anh"
+    ],
+     "cong nghe sinh hoc": [
+      "cnsh",
+      "sinh hoc",
+      "sinh học"
     ]
   },
 
@@ -86,6 +121,58 @@
       "so_tin_chi": "Ngành Quản trị kinh doanh yêu cầu hoàn thành 128 tín chỉ.",
       "thong_tin": "Ngành Quản trị kinh doanh đào tạo về quản lý, marketing, tài chính và chiến lược doanh nghiệp."
     },
+    "cong nghe thuc pham": {
+     "hoc_phi": "Học phí khoảng 32.000.000 - 45.000.000 VNĐ/năm.",
+     "diem_chuan": "Điểm chuẩn năm 2025 khoảng 16 - 19 điểm.",
+     "thoi_gian_hoc": "4 năm.",
+     "to_hop": "A00, B00, D07.",
+     "so_tin_chi": "Khoảng 130 - 140 tín chỉ.",
+     "thong_tin": "Đào tạo về chế biến, bảo quản và kiểm định chất lượng thực phẩm."
+    },
+
+    "thuong mai dien tu": {
+     "hoc_phi": "Học phí khoảng 30.000.000 - 42.000.000 VNĐ/năm.",
+     "diem_chuan": "Điểm chuẩn năm 2025 khoảng 17 - 20 điểm.",
+     "thoi_gian_hoc": "4 năm.",
+     "to_hop": "A00, A01, D01.",
+     "so_tin_chi": "Khoảng 120 - 130 tín chỉ.",
+     "thong_tin": "Đào tạo về kinh doanh online, hệ thống thương mại điện tử và digital business."
+    },
+
+    "cong nghe sinh hoc": {
+     "hoc_phi": "Học phí khoảng 32.000.000 - 45.000.000 VNĐ/năm.",
+     "diem_chuan": "Điểm chuẩn năm 2025 khoảng 16 - 19 điểm.",
+     "thoi_gian_hoc": "4 năm.",
+     "to_hop": "B00, A00, D08.",
+     "so_tin_chi": "Khoảng 130 - 140 tín chỉ.",
+     "thong_tin": "Đào tạo về công nghệ sinh học, y sinh, môi trường và ứng dụng sinh học."
+    },
+
+    "marketing": {
+     "hoc_phi": "Học phí khoảng 30.000.000 - 42.000.000 VNĐ/năm.",
+     "diem_chuan": "Điểm chuẩn năm 2025 khoảng 18 - 21 điểm.",
+     "thoi_gian_hoc": "4 năm.",
+     "to_hop": "A00, A01, D01.",
+     "so_tin_chi": "Khoảng 120 - 130 tín chỉ.",
+     "thong_tin": "Đào tạo về truyền thông, quảng cáo, thương hiệu và digital marketing."
+    },
+
+    "cong nghe ky thuat dien dien tu": {
+     "hoc_phi": "Học phí khoảng 32.000.000 - 45.000.000 VNĐ/năm.",
+     "diem_chuan": "Điểm chuẩn năm 2025 khoảng 16 - 19 điểm.",
+     "thoi_gian_hoc": "4 năm.",
+     "to_hop": "A00, A01.",
+     "so_tin_chi": "Khoảng 140 tín chỉ.",
+     "thong_tin": "Đào tạo về hệ thống điện, điện tử, tự động hóa."
+    },
+    "ngon ngu anh": {
+    "hoc_phi": "Học phí khoảng 28.000.000 - 38.000.000 VNĐ/năm.",
+    "diem_chuan": "Điểm chuẩn năm 2025 khoảng 18 - 21 điểm.",
+    "thoi_gian_hoc": "4 năm.",
+    "to_hop": "D01, D14, D15.",
+    "so_tin_chi": "Khoảng 120 tín chỉ.",
+    "thong_tin": "Đào tạo tiếng Anh thương mại, biên phiên dịch và giao tiếp quốc tế."
+  },
 
     "ke toan": {
       "hoc_phi": "Học phí ngành Kế toán khoảng 13.000.000 VNĐ/năm.",
@@ -96,7 +183,9 @@
       "thong_tin": "Ngành Kế toán đào tạo chuyên sâu về kế toán tài chính, kiểm toán và quản lý thuế."
     },
 
-    "co_so": "Trường Đại học ABC tọa lạc tại số 123 đường Nguyễn Văn Linh, TP. Hồ Chí Minh.",
-    "lien_he": "Bạn có thể liên hệ qua số điện thoại 0123 456 789 hoặc email info@abc.edu.vn."
+    
+
+    "co_so": "Trường Đại học công thương tọa lạc tại số 140 đường Lê Trọng Tấn, Quận Tân Phú , TP. Hồ Chí Minh.",
+    "lien_he": "Bạn có thể liên hệ qua số điện thoại 0283 8163 318 hoặc email info@cntphcm.com."
   }
 }
