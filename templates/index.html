@@ -44,14 +44,28 @@ html,body{
   border-bottom:1px solid #eee;
 }
 
+/* ✅ FIX LOGO CHUẨN */
 .main-logo{
   width:95px;
+  height:95px;           /* bắt buộc */
+  border-radius:50%;     /* bo tròn */
+  object-fit:cover;      /* luôn thấy ảnh */
   margin-bottom:12px;
+  border:3px solid #2563eb;
+  background:#fff;
 }
+
+/* nếu logo bị cắt thì dùng cái này */
+/*
+.main-logo{
+  object-fit:contain;
+  padding:10px;
+}
+*/
 
 .chat-header h1{
   margin:0;
-  font-size:26px;   /* CHỦ ĐỀ TO */
+  font-size:26px;
   font-weight:700;
   color:var(--blue);
 }
@@ -59,7 +73,7 @@ html,body{
 .chat-header p{
   margin:6px 0 0;
   font-size:14px;
-  font-weight:600;   /* IN ĐẬM */
+  font-weight:600;
   color:#444;
 }
 
@@ -168,9 +182,9 @@ html,body{
 <div class="chat-shell">
 
 <div class="chat-header">
-  <!-- ROBOT LOGO -->
-  <img class="main-logo" 
-       src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png">
+  <!-- ✅ LOGO LOCAL CHẮC CHẮN HIỆN -->
+  <img class="main-logo" src="https://i.postimg.cc/VLwkWwKh/Logo-HUIT-01-(1).png">
+
   <h1>Chatbot Group 05</h1>
   <p>Tư vấn tuyển sinh — HUIT</p>
 </div>
@@ -195,8 +209,6 @@ html,body{
 const chatbox=document.getElementById("chatbox");
 const micBtn=document.getElementById("micBtn");
 
-/* ===== ADD MESSAGE ===== */
-
 function addBot(text){
   const div=document.createElement("div");
   div.className="msg-row bot";
@@ -213,12 +225,9 @@ function addUser(text){
   chatbox.scrollTop=chatbox.scrollHeight;
 }
 
-/* ===== WELCOME ===== */
 window.onload=()=>{
   addBot("Xin chào 👋 Mình có thể giúp gì cho bạn?");
 }
-
-/* ===== SEND ===== */
 
 async function sendMessage(text){
   if(!text) return;
@@ -253,10 +262,7 @@ document.getElementById("message").addEventListener("keydown",e=>{
   }
 });
 
-/* ===== VOICE ===== */
-
 if ('webkitSpeechRecognition' in window) {
-
   const recognition=new webkitSpeechRecognition();
   recognition.lang="vi-VN";
 
