@@ -79,7 +79,7 @@ def infer_answer(raw_input):
         return answer if answer else "Hiện chưa có dữ liệu cho ngành này."
 
     if not intent:
-        return "Xin lỗi, tôi chưa hiểu câu hỏi. Ví dụ: 'học phí CNTT'."
+        return "Có vẻ như dữ liệu này tôi chưa được tải lên . Bạn có thể hỏi câu hỏi liên quan đến tư vấn tuyển sinh ví dụ về điểm , học phí, ngành học được chứ."
 
     field = intent["field"]
 
