@@ -2,3 +2,6 @@ flask
 gunicorn
 scikit-learn
 nltk
+Flask
+fuzzywuzzy
+python-Levenshtein
