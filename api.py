@@ -40,6 +40,7 @@ def detect_intent(user_input):
             # Dùng token_set_ratio để tìm keyword bất chấp thứ tự từ hoặc từ thừa
             score = fuzz.token_set_ratio(kw_norm, user_input_norm)
             if score > best_score:
+                
                 best_score = score
                 best_rule = rule
                 
